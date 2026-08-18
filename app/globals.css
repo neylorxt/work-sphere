@@ -1,26 +1,219 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: hsl(220 33% 98%);
+  --foreground: hsl(222 47% 11%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(222 47% 11%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(222 47% 11%);
+  --primary: hsl(243 75% 59%);
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: hsl(220 14% 96%);
+  --secondary-foreground: hsl(222 47% 11%);
+  --muted: hsl(220 14% 96%);
+  --muted-foreground: hsl(220 9% 46%);
+  --accent: hsl(243 75% 96%);
+  --accent-foreground: hsl(243 75% 40%);
+  --destructive: hsl(0 72% 51%);
+  --destructive-foreground: hsl(0 0% 100%);
+  --success: hsl(160 84% 39%);
+  --success-foreground: hsl(0 0% 100%);
+  --warning: hsl(38 92% 50%);
+  --warning-foreground: hsl(0 0% 100%);
+  --border: hsl(220 13% 91%);
+  --input: hsl(220 13% 91%);
+  --ring: hsl(243 75% 59%);
+  --sidebar: hsl(220 33% 99%);
+  --sidebar-foreground: hsl(222 47% 11%);
+  --sidebar-border: hsl(220 13% 91%);
+  --chart-1: hsl(243 75% 59%);
+  --chart-2: hsl(199 89% 48%);
+  --chart-3: hsl(160 84% 39%);
+  --chart-4: hsl(32 95% 44%);
+  --chart-5: hsl(262 83% 58%);
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: hsl(240 10% 3.9%);
+  --foreground: hsl(0 0% 98%);
+  --card: hsl(240 6% 7%);
+  --card-foreground: hsl(0 0% 98%);
+  --popover: hsl(240 6% 8%);
+  --popover-foreground: hsl(0 0% 98%);
+  --primary: hsl(239 84% 67%);
+  --primary-foreground: hsl(226 100% 6%);
+  --secondary: hsl(240 5% 14%);
+  --secondary-foreground: hsl(0 0% 98%);
+  --muted: hsl(240 5% 13%);
+  --muted-foreground: hsl(240 5% 64%);
+  --accent: hsl(239 40% 16%);
+  --accent-foreground: hsl(0 0% 98%);
+  --destructive: hsl(0 72% 51%);
+  --destructive-foreground: hsl(0 0% 100%);
+  --success: hsl(160 84% 39%);
+  --success-foreground: hsl(0 0% 100%);
+  --warning: hsl(38 92% 50%);
+  --warning-foreground: hsl(0 0% 100%);
+  --border: hsl(240 6% 16%);
+  --input: hsl(240 6% 16%);
+  --ring: hsl(239 84% 67%);
+  --sidebar: hsl(240 7% 6%);
+  --sidebar-foreground: hsl(0 0% 98%);
+  --sidebar-border: hsl(240 6% 16%);
+  --chart-1: hsl(239 84% 67%);
+  --chart-2: hsl(199 89% 55%);
+  --chart-3: hsl(160 84% 45%);
+  --chart-4: hsl(38 92% 55%);
+  --chart-5: hsl(262 83% 64%);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html[data-theme] {
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Allow grid children to shrink below their content width (avoids horizontal overflow). */
+@layer base {
+  .grid > * {
+    min-width: 0;
+  }
+}
+
+::selection {
+  background-color: color-mix(in oklab, var(--primary) 25%, transparent);
+}
+
+/* Scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--border);
+  border-radius: 9999px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Recharts theming */
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: var(--border);
+}
+
+.recharts-text {
+  fill: var(--muted-foreground);
+  font-size: 11px;
+}
+
+.recharts-default-legend {
+  font-size: 12px;
+}
+
+.recharts-tooltip-wrapper {
+  outline: none;
+}
+
+.recharts-surface:focus,
+.recharts-surface:focus-visible {
+  outline: none;
+}
+
+/* Native date picker icon visibility */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.dark input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.4s ease both;
 }
